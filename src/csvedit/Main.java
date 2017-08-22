@@ -3,6 +3,10 @@ package csvedit;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+	    CustomReader customReader = new CustomReader();
+	    customReader.read();
+
+	    CustomWriter customWriter = new CustomWriter();
+	    customWriter.write();
     }
 }
