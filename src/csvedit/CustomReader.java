@@ -27,7 +27,7 @@ public class CustomReader {
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-        CSVParser parser = new CSVParserBuilder().withSeparator(delimiter).withIgnoreQuotations(ignoreQuotes).withIgnoreLeadingWhiteSpace(false).build();
+        CSVParser parser = new CSVParserBuilder().withSeparator(delimiter).withIgnoreQuotations(ignoreQuotes).withQuoteChar('"').withIgnoreLeadingWhiteSpace(false).build();
         CSVReader reader = new CSVReaderBuilder(bufferedReader).withCSVParser(parser).build();
         table = reader.readAll();
 
@@ -41,13 +41,10 @@ public class CustomReader {
             }
             String[] row = table.get(rowIndex);
             for (int valueIndex = 0; valueIndex < row.length; ++valueIndex){
-                if (!row[valueIndex].startsWith("\"") && valueIndex == 0 && row[valueIndex].length()>1) {
+                if (!row[valueIndex].startsWith("\"")) {
                     row[valueIndex] = "\""+row[valueIndex];
                 }
-                while (!row[valueIndex].startsWith("\"") && !row[valueIndex].equals("")) {
-                    row[valueIndex] = row[valueIndex].substring(1);
-                }
-                row[valueIndex] = row[valueIndex].replaceAll("[^- :.,!@#$%^&*(\')_+{}=öäüßÖÄÜß?A-Za-z0-9]", "");
+                row[valueIndex] = row[valueIndex].replaceAll("[^- :.,!@#$%^&*()_+{}=öäüßÖÄÜß?A-Za-z0-9]", "");
             }
         }
     }

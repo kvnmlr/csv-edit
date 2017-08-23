@@ -3,7 +3,7 @@ package csvedit;
 import org.apache.commons.cli.*;
 
 public class Main {
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 		Options options = new Options();
 
 		Option input = new Option("i", "input", true, "input file path");
@@ -40,5 +40,5 @@ public class Main {
 
 		CSVEditor editor = new CSVEditor(inputFilePath, outputFilePath, delimiterToken);
 		editor.start();
-    }
+	}
 }

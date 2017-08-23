@@ -14,8 +14,6 @@ public class CSVEditor {
         this.delimiter = delimiter;
         this.inputFilePath = inputFilePath;
         this.outputFilePath = outputFilePath;
-
-        System.out.println(inputFilePath);
     }
 
     public void start() {
@@ -49,7 +47,7 @@ public class CSVEditor {
         CustomReader customReader = new CustomReader();
         List<String[]> table;
         try {
-            customReader.read(fileName, delimiter.toCharArray()[0], true);
+            customReader.read(fileName, delimiter.toCharArray()[0], false);
             table = customReader.getTable();
         } catch (Exception e) {
             System.out.println("Could not read input file " + fileName);
